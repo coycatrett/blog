@@ -637,3 +637,13 @@ article img {
   stroke: currentColor;
   fill: none;
 }
+
+.diagram-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  /* flex-wrap: wrap; */
+  /* stacks on small screens */
+}
