@@ -23,6 +23,7 @@ import remarkMath from 'remark-math' /* for latex math support */
 import rehypeKatex from 'rehype-katex' /* again, for latex math support */
 import remarkGemoji from './src/plugins/remark-gemoji' /* for shortcode emoji support */
 import rehypePixelated from './src/plugins/rehype-pixelated' /* Custom plugin to handle pixelated images */
+import { typst } from 'astro-typst'
 
 // https://astro.build/config
 export default defineConfig({
@@ -75,6 +76,34 @@ export default defineConfig({
       plugins: [pluginLineNumbers()],
     }), // Must come after expressive-code integration
     mdx(),
+    typst({
+      options: {
+        remPx: 14,
+      },
+      /* The target function determines which mode a file will render in
+        The default is:
+        *.html.typ => html export
+        *.svg.typ =>  svg export
+        **\/html/** => html export
+        **\/svg/** =>  svg export
+        Then you can use .typ files like anything else in Astro
+      */
+
+      target: (id) => {
+        console.debug(`Detectng ${id}`)
+        if (id.endsWith('.html.typ') || id.includes('/html/'))
+          return "html"
+        return "svg"
+      },
+      // === <img src="xxx.svg"> instead of inlined <svg> ===
+      // emitSvg: true,
+      // emitSvgDir: ".astro/integrations/typst",
+      // === Add non-system fonts here ===
+      // fontArgs: [
+      //   { fontPaths: ['/system/fonts', '/user/fonts'] },
+      //   { fontBlobs: [customFontBuffer] }
+      // ],
+    })
   ],
   experimental: {
     contentIntellisense: true,
