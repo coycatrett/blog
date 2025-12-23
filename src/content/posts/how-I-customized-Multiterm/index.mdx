@@ -1,0 +1,89 @@
+---
+title: 'How I Customized Multiterm'
+published: 2025-12-22
+draft: false
+description: 'Test'
+tags: ['Multiterm', 'customized']
+toc: true
+---
+import TestDiagram from "./comm-diagram-test.svg"
+import TestDiagram2 from "./comm-diagram-test-2.svg"
+
+Change the file extension of your post file from `.md` to `.mdx` and import all of your diagrams at the top of the file:
+
+```md wrap
+---
+title: 'Blog Post Title'
+.
+.
+.
+---
+import TestDiagram from "./comm-diagram-test.svg"
+import TestDiagram2 from "./comm-diagram-test-2.svg"
+.
+.
+.
+```
+
+Render them in $\LaTeX$ using quiver or some other tool
+
+Then use [upmath](https://upmath.me/) by rendering as html, viewing the source by following the link, and saving the page with `ctrl + s` as an `svg`.
+
+In the `global.css` file, add the following at the bottom of the file:
+
+```css
+.diagram {
+  width: 100%;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  fill: currentColor;
+}
+
+.diagram path,
+.diagram line,
+.diagram polyline,
+.diagram polygon {
+  stroke: currentColor;
+  fill: none;
+}
+```
+
+Finally, inline the diagrams
+
+```md title="Inlined Diagrams" wrap
+<TestDiagram class="diagram" />
+<TestDiagram2 class="diagram" />
+```
+
+<TestDiagram class="diagram" />
+Some text between
+<TestDiagram2 class="diagram" />
+
+To place two diagrams next to each other, add this to the end of the `global.css` file
+
+```css
+.diagram-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+}
+```
+
+and add them like this:
+
+```md title="Inlined Diagrams Next to Each Other" wrap
+<div class="diagram-row">
+  <TestDiagram class="diagram" />
+  <TestDiagram2 class="diagram" />
+</div>
+```
+
+<div class="diagram-row">
+  <TestDiagram class="diagram" />
+  <TestDiagram2 class="diagram" />
+</div>
+
+// Don't forget to add how you customized the width in Layout.astro

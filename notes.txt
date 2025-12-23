@@ -1,0 +1,4 @@
+Best practices for keeping forked repo up to date with original repo:
+https://github.com/orgs/community/discussions/153608
+
+Maybe learn about Astro Starlight?

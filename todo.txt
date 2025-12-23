@@ -1,0 +1,6 @@
+- Update README.md
+- Change text width
+- Remove github tracker
+- Integrate typst
+  Potential lead: https://blog.sillyfreak.space/2025/06/29/rewrite-it-in-typst/
+- Set up comments

@@ -9,6 +9,11 @@ coverImage:
   alt: 'A person with short, thick hair and prescription glasses sits at an organized workstation, using a magnification app to navigate a webpage. Their posture is proper and relaxed. On the desk: a computer, a mouse, a large desk lamp and a small notebook.'
 ---
 
+
+:::note
+I am leaving this blog post up to show off the features of the Multiterm Astro theme by `stelcodes` ([stelcodes/multiterm-astro](https://github.com/stelcodes/multiterm-astro)), who is the author of this blog post. This blog post, as well as several more amazing posts, can be found at the [example website](https://multiterm.stelclementine.com/).
+:::
+
 Since the post does not have a description in the frontmatter, the first paragraph is used.
 
 ## Theming
