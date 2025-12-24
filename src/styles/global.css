@@ -624,30 +624,21 @@ article img {
 
 .diagram {
   width: 100%;
-  margin: auto;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  /* top bottm left right */
+  margin: 3rem auto;
   fill: currentColor;
-}
-
-.diagram text {
-  fill: currentColor;
-  /* text color matches theme */
-  stroke: none;
-  /* remove any stroke from text */
-  font-weight: normal;
-  /* override bold if needed */
-  font-size: 1em;
-  /* relative to SVG coordinates */
+  vector-effect: non-scaling-stroke;
 }
 
 .diagram path,
 .diagram line,
-.diagram polyline,
-.diagram polygon {
+.diagram polyline
+
+/* .diagram polygon  */
+  {
   /* vector-effect: non-scaling-stroke; */
   stroke: currentColor;
-  fill: none;
+  /* fill: none; */
 }
 
 .diagram-row {
