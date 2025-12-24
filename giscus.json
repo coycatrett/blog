@@ -1,6 +1,7 @@
 {
   "origins": [
     "http://localhost:4321",
+    "http://10.0.0.3:4321",
     "https://coys-blog.com"
   ]
 }
