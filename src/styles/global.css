@@ -627,7 +627,7 @@ article img {
   /* top bottm left right */
   margin: 3rem auto;
   fill: currentColor;
-  vector-effect: non-scaling-stroke;
+  /* vector-effect: non-scaling-stroke; */
 }
 
 .diagram path,
@@ -636,7 +636,7 @@ article img {
 
 /* .diagram polygon  */
   {
-  /* vector-effect: non-scaling-stroke; */
+  vector-effect: non-scaling-stroke;
   stroke: currentColor;
   /* fill: none; */
 }
