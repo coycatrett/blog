@@ -9,7 +9,10 @@ toc: true
 import TestDiagram from "./comm-diagram-test.svg"
 import TestDiagram2 from "./comm-diagram-test-2.svg"
 
-Change the file extension of your post file from `.md` to `.mdx` and import all of your diagrams at the top of the file:
+For my personal site, I want the additional capability to add commutative diagrams and other $\LaTeX$ features that match the theme selected theme of the site.
+## LaTeX Diagrams
+
+This solution requires you to change the file extensions for posts from `.md` to `.mdx` and import all of your diagrams at the top of the file:
 
 ```md wrap
 ---
@@ -25,9 +28,7 @@ import TestDiagram2 from "./comm-diagram-test-2.svg"
 .
 ```
 
-Render them in $\LaTeX$ using quiver or some other tool
-
-Then use [upmath](https://upmath.me/) by rendering as html, viewing the source by following the link, and saving the page with `ctrl + s` as an `svg`.
+Render them in $\LaTeX$ using [quiver](https://q.uiver.app/) or some other tool. Use [upmath](https://upmath.me/) by rendering as html, viewing the source by following the link, and saving the page with `ctrl + s` as an `svg`.
 
 In the `global.css` file, add the following at the bottom of the file:
 
@@ -57,10 +58,12 @@ Finally, inline the diagrams
 ```
 
 <TestDiagram class="diagram" />
-Some text between
+
+(some text between them)
+
 <TestDiagram2 class="diagram" />
 
-To place two diagrams next to each other, add this to the end of the `global.css` file
+To place two diagrams next to each other, add the following styling to the end of  `global.css` file:
 
 ```css
 .diagram-row {
@@ -72,7 +75,7 @@ To place two diagrams next to each other, add this to the end of the `global.css
 }
 ```
 
-and add them like this:
+Place your diagrams next to each other like so:
 
 ```md title="Inlined Diagrams Next to Each Other" wrap
 <div class="diagram-row">
@@ -86,4 +89,34 @@ and add them like this:
   <TestDiagram2 class="diagram" />
 </div>
 
-Don't forget to add how you customized the width in Layout.astro 
+
+## Miscellaneous Modifications
+
+In addition to the above modifications for having responsive $\LaTeX$ diagrams, I will keep a record of the other small customizations that I have made to Multiterm.
+
+### Increasing the Article Width
+
+In the `Layouts.astro` file, there is a section specifying the layout of the page, along with some `tailwindcss` styling:
+```astro
+<body class="w-full h-full m-0 bg-background text-foreground">
+    <div
+      class="flex flex-col max-w-3xl min-h-screen border-accent/10 m-auto p-3 sm:py-5 sm:px-6 md:py-10"
+    >
+      <Header />
+      <main class="flex flex-col py-1">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+</body>
+```
+To increase the article width, we can change maximum width parameter (I changed it to something between `3xl` and `4xl`)
+```astro
+    <div
+      class="flex flex-col max-w-[52rem] min-h-screen border-accent/10 m-auto p-3 sm:py-5 sm:px-6 md:py-10"
+    >
+```
+
+### Fixing Giscus
+
+I am currently having some issues setting up Giscus for comments on my blogpost. I have tried various attempts to fix the issue that I am experiencing, but with no luck. The issue is linked here: [https://github.com/giscus/giscus/issues/1684](https://github.com/giscus/giscus/issues/1684)

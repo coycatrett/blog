@@ -630,10 +630,22 @@ article img {
   fill: currentColor;
 }
 
+.diagram text {
+  fill: currentColor;
+  /* text color matches theme */
+  stroke: none;
+  /* remove any stroke from text */
+  font-weight: normal;
+  /* override bold if needed */
+  font-size: 1em;
+  /* relative to SVG coordinates */
+}
+
 .diagram path,
 .diagram line,
 .diagram polyline,
 .diagram polygon {
+  /* vector-effect: non-scaling-stroke; */
   stroke: currentColor;
   fill: none;
 }
