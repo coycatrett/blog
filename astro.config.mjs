@@ -22,10 +22,12 @@ import remarkUnknownDirectives from './src/plugins/remark-unknown-directives' /*
 import remarkMath from 'remark-math' /* for latex math support */
 import rehypeKatex from 'rehype-katex' /* again, for latex math support */
 import remarkGemoji from './src/plugins/remark-gemoji' /* for shortcode emoji support */
-import rehypePixelated from './src/plugins/rehype-pixelated' /* Custom plugin to handle pixelated images */
+import rehypePixelated from './src/plugins/rehype-pixelated' /* Custom plugin to handle pixelated images */]
+import vercel from '@astrojs/vercel'
 
 // https://astro.build/config
 export default defineConfig({
+  adapter: vercel(),
   site: siteConfig.site,
   trailingSlash: siteConfig.trailingSlashes ? 'always' : 'never',
   prefetch: true,
