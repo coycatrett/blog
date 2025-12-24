@@ -627,18 +627,15 @@ article img {
   /* top bottm left right */
   margin: 3rem auto;
   fill: currentColor;
-  /* vector-effect: non-scaling-stroke; */
 }
 
 .diagram path,
 .diagram line,
-.diagram polyline
-
-/* .diagram polygon  */
-  {
+.diagram polyline,
+.diagram polygon {
   vector-effect: non-scaling-stroke;
   stroke: currentColor;
-  /* fill: none; */
+  stroke-width: 0.075rem;
 }
 
 .diagram-row {
@@ -647,6 +644,4 @@ article img {
   justify-content: center;
   align-items: flex-start;
   gap: 2rem;
-  /* flex-wrap: wrap; */
-  /* stacks on small screens */
 }

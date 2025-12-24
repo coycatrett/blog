@@ -35,9 +35,9 @@ In the `global.css` file, add the following at the bottom of the file:
 ```css
 .diagram {
   width: 100%;
-  margin: auto;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  width: 100%;
+  /* top bottm left right */
+  margin: 3rem auto;
   fill: currentColor;
 }
 
@@ -45,8 +45,9 @@ In the `global.css` file, add the following at the bottom of the file:
 .diagram line,
 .diagram polyline,
 .diagram polygon {
+  /* to avoid having bloated glyphs on mobile */
+  vector-effect: non-scaling-stroke;
   stroke: currentColor;
-  fill: none;
 }
 ```
 
