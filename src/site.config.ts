@@ -165,14 +165,14 @@ const config: SiteConfig = {
   // Take the values from the generated script tag at https://giscus.app and fill them in here.
   // IMPORTANT: Update giscus.json in the root of the project with your own website URL
   // If you don't want to use Giscus, set this to undefined.
-  giscus:
-  {
-    repo: 'coycatrett/blog',
-    repoId: 'R_kgDOQtP2xA',
-    category: 'Blog Comments',
-    categoryId: 'DIC_kwDOQtP2xM4C0K03',
-    reactionsEnabled: true, // Enable reactions on post itself
-  },
+  giscus: undefined,
+  // {
+  //   repo: 'coycatrett/blog',
+  //   repoId: 'R_kgDOQtP2xA',
+  //   category: 'Blog Comments',
+  //   categoryId: 'DIC_kwDOQtP2xM4C0K03',
+  //   reactionsEnabled: true, // Enable reactions on post itself
+  // },
   // These are characters available for the character chat feature.
   // To add your own character, add an image file to the top-level `/public` directory
   // Make sure to compress the image to a web-friendly size (<100kb)
