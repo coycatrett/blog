@@ -1,0 +1,160 @@
+---
+title: 'How I Customized Multiterm'
+published: 2025-12-22
+draft: false
+description: 'How I customized and configured the Multiterm blog template'
+tags: ['Multiterm']
+toc: true
+---
+import TestDiagram from "./comm-diagram-test.svg"
+import TestDiagram2 from "./comm-diagram-test-2.svg"
+
+The main feature that I wanted for this blog was to have a way to embed commutative diagrams that match the theme selected theme of the site. This post will discuss my current process for achieving this, along with some other miscellaneous modifications.
+
+
+## LaTeX Diagrams
+
+This solution requires you to change the file extensions for posts from `.md` to `.mdx` and import all of your diagrams at the top of the file:
+
+```md title="index.mdx"
+---
+title: 'Blog Post Title'
+.
+.
+.
+---
+import TestDiagram from "./comm-diagram-test.svg"
+import TestDiagram2 from "./comm-diagram-test-2.svg"
+.
+.
+.
+```
+
+Render them in $\LaTeX$ using [quiver](https://q.uiver.app/) or some other tool. Use [upmath](https://upmath.me/) by rendering as html, viewing the source by following the link, and saving the page with `ctrl + s` as an `svg`.
+
+In the `global.css` file, add the following at the bottom of the file:
+
+```css title="global.css"
+.diagram {
+  width: 100%;
+  width: 100%;
+  /* [top bottom] [left right] */
+  margin: 3rem auto;
+  fill: currentColor;
+}
+
+.diagram path,
+.diagram line,
+.diagram polyline,
+.diagram polygon {
+  /* to avoid having bloated glyphs on mobile */
+  vector-effect: non-scaling-stroke;
+  stroke: currentColor;
+  stroke-width: 0.075rem;
+}
+```
+
+Finally, inline the diagrams
+
+```md title="Inlined Diagrams" wrap
+<TestDiagram class="diagram" />
+<TestDiagram2 class="diagram" />
+```
+
+<TestDiagram class="diagram" />
+
+(some text between them)
+
+<TestDiagram2 class="diagram" />
+
+To place two diagrams next to each other, add the following styling to the end of  `global.css` file:
+
+```css title="global.css"
+.diagram-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+}
+```
+
+Place your diagrams next to each other like so:
+
+```md title="Inlined Diagrams Next to Each Other" wrap
+<div class="diagram-row">
+  <TestDiagram class="diagram" />
+  <TestDiagram2 class="diagram" />
+</div>
+```
+
+<div class="diagram-row">
+  <TestDiagram class="diagram" />
+  <TestDiagram2 class="diagram" />
+</div>
+
+The diagrams will now change their color with the selected theme :slightly_smiling_face:
+
+:::note
+I believe the maintainers of [quiver](https://q.uiver.app/) are working on exporting diagrams to `svg`; until then, this will be my current work-around.
+:::
+
+
+## Miscellaneous Modifications
+
+In addition to the above modifications for having responsive $\LaTeX$ diagrams, I will keep a record of the other small customizations that I have made to Multiterm.
+
+### Increasing the Article Width
+
+In the `Layouts.astro` file, there is a section specifying the layout of the page, along with some `tailwindcss` styling:
+```astro title="Layouts.astro" wrap
+<body class="w-full h-full m-0 bg-background text-foreground">
+    <div
+      class="flex flex-col max-w-3xl min-h-screen border-accent/10 m-auto p-3 sm:py-5 sm:px-6 md:py-10"
+    >
+      <Header />
+      <main class="flex flex-col py-1">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+</body>
+```
+
+To increase the article width, we can change maximum width parameter (I changed it to something between `3xl` and `4xl`)
+
+```astro title="Layouts.astro" wrap
+    <div
+      class="flex flex-col max-w-[52rem] min-h-screen border-accent/10 m-auto p-3 sm:py-5 sm:px-6 md:py-10"
+    >
+```
+
+### Setting Up Giscus 
+
+Setting up Giscus was relatively straightforward by following the directions found on the [giscus.app](http://giscus.app). The one thing that was confusing for me was setting up the `giscus.json` and using the `origins` key correctly. The below can be found at [Advanced Usage Giscus Documentation](https://github.com/giscus/giscus/blob/main/ADVANCED-USAGE.md).
+
+The `origins` field is used to control the domains can read from and write to the GitHub discussions on your blog's repository. The `origins` key accepts a list of strings that are checked against the `window.origin` of the page that loads Giscus. Another key that the `giscus.json` accepts is the `originsRegex` key, which accepts a regular expression representing a set of domain names to be tested against the `window.origin` of the page that loads Giscus. 
+
+An example `giscus.json` looks like this:
+
+```json title="giscus.json"
+{
+  "origins": [
+    "https://your-blogs-domain-name"
+  ],
+  "originsRegex": [
+    "http://localhost:[0-9]+"
+  ]
+}
+```
+
+After pushing to your remote repository with this `giscus.json`, your blog's domain and any ports exposed by your machine's local host have read and write permissions to the GitHub discussions on your blog's repository.
+
+In my case, when I set up my `giscus.json`, I had set my `origins` key incorrectly. Giscus wasn't loading comments and was being redirected to [https://github.com/orgs/giscus/discussions/1298](https://github.com/orgs/giscus/discussions/1298) (you can find this redirect in the Network Monitor section of your browser's developer tools), but figuring out that my `origins` key was incorrect was tricky. If you end up being redirected here when setting up Giscus, make sure that your domain names are correct in your `giscus.json`.
+
+I have documented my process troubleshooting my specific issue: [https://github.com/giscus/giscus/issues/1684](https://github.com/giscus/giscus/issues/1684).
+
+
+### Staying Synced with stelcodes
+
+Since I forked this template from [stelcodes/multiterm-astro](https://github.com/stelcodes/multiterm-astro), I wanted my fork to stay up to date with the original repository. To do so, I followed [this guide](https://github.com/orgs/community/discussions/153608). 
