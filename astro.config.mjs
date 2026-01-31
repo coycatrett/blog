@@ -24,6 +24,7 @@ import rehypeKatex from 'rehype-katex' /* again, for latex math support */
 import remarkGemoji from './src/plugins/remark-gemoji' /* for shortcode emoji support */
 import rehypePixelated from './src/plugins/rehype-pixelated' /* Custom plugin to handle pixelated images */
 import vercel from '@astrojs/vercel'
+import icon from 'astro-icon'
 
 // https://astro.build/config
 export default defineConfig({
@@ -66,6 +67,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [
+    icon(),
     sitemap(),
     expressiveCode({
       themes: siteConfig.themes.include,

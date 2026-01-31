@@ -8,8 +8,9 @@ toc: true
 ---
 import TestDiagram from "./comm-diagram-test.svg"
 import TestDiagram2 from "./comm-diagram-test-2.svg"
+import Callout from '~/components/Callout.astro'
 
-The main feature that I wanted for this blog was to have a way to embed commutative diagrams that match the theme selected theme of the site. This post will discuss my current process for achieving this, along with some other miscellaneous modifications.
+The main features that I wanted for this blog was to have a way to embed commutative diagrams and have custom callouts (theorems, lemmas, proofs, etc.), both matching the theme selected theme of the site. This post will discuss my current process for achieving this, along with some other miscellaneous modifications.
 
 
 ## LaTeX Diagrams
@@ -98,6 +99,37 @@ The diagrams will now change their color with the selected theme :slightly_smili
 :::note
 I believe the maintainers of [quiver](https://q.uiver.app/) are working on exporting diagrams to `svg`; until then, this will be my current work-around.
 :::
+
+## Custom Callouts
+While the Multiterm theme comes packaged with callouts, they don't support my goals for blogging about math and computer science. During my search for a blog template, I was debating on using the [Erudite theme](https://astro-erudite.vercel.app/). I ultimately chose the Multiterm template - one of the main reasons being the wide variety of themes to choose from - but the Erudite theme had the callout feature that I wanted: [A Callout Component for Nerds](https://astro-erudite.vercel.app/blog/callouts-component). So, I integrated the callout component into Multiterm; I absolutely love the way they look!
+
+<Callout title="Functor" variant="definition">
+  A functor is an arrow $F : \mathsf{C} \to \mathsf{D}$ between categories - $F$ takes objects to objects and morphisms to morphisms in such a way that
+  - $\mathsf{dom} \, Ff = F \, \mathsf{dom} \, f$ for each $\mathsf{C}$-morphism $f$,
+  - $\mathsf{cod} \, Ff = F \, \mathsf{cod} \, f$ for each $\mathsf{C}$-morphism $f$,
+  - $F \, \mathsf{id}_c = \mathsf{id}_{Fc}$ for each $c \in \mathsf{C}$,
+  - $F(g \circ f) = F f \circ F g$ for each pair of composable $\mathsf{C}$-morphisms $f$ and $g$.
+</Callout>
+
+<Callout title="Identity Functor" variant="example">
+  For every category $\mathsf{C}$, there is a functor $\mathsf{Id} : \mathsf{C} \to \mathsf{C}$ which preserves all objects and morphisms of $\mathsf{C}$.
+</Callout>
+
+<Callout title="The Yoneda Lemma" variant="lemma">
+  Let $\mathsf{C}$ be a locally small category and $F : \mathsf{C} \to \mathsf{Set}$ be a functor. 
+  $$
+    \mathsf{Nat}(\mathsf{C}(c,-),F) \cong Fc
+  $$
+  naturally in $F$ and $c$ when viewed as functors $\mathsf{C} \times [\mathsf{C},\mathsf{Set}] \to \mathsf{Set}$.
+</Callout>
+
+<Callout title="Of Yoneda" variant="proof" defaultOpen={false}>
+  \<Insert Proof of the Yoneda Lemma\>
+</Callout>
+
+<Callout title="The Comprehensive Factorization Theorem" variant="theorem">
+  The class of final functors and discrete fibrations forms an orthogonal factorization system of $\mathsf{Cat}$. Dually, the class of inital functors and discrete opfibrations forms an orthogonal factorization system of $\mathsf{Cat}$.
+</Callout>
 
 
 ## Miscellaneous Modifications
