@@ -5,6 +5,4 @@ avatarImage:
 githubCalendar: 'coycatrett'
 ---
 
-Hey, welcome to my blog 👋🏽
-
-I plan to discuss some of my projects and thoughts about math
+Hey, welcome to my personal site & blog 👋🏽
