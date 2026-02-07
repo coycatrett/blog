@@ -18,6 +18,6 @@ In my computer architecture course, me and a team of five others designed and sy
 
 Recently, I have been interested in category theory and type theory.
 
-I played hockey, basketball, and baseball when I was in highschool, and a bit of hockey in college, but I am a bit out of practice. A few of my other hobbies include chess and aim training.
+I played hockey, basketball, and baseball when I was in highschool, and a bit of hockey in college, but I am a mostly out of practice. A few of my other hobbies include chess and aim training.
 
 During school, I tutored math at the University of Michigan MathLab and worked as a teacher's assistant and grader for a variety of courses. Currently, I work as an instructor at my local Mathnasium.
